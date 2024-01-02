@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuu2xudmuq0e7"]
+
+[ext_resource type="Script" path="res://src/SwitchGimmick.gd" id="1_x4bie"]
+[ext_resource type="Texture2D" uid="uid://b4vd33icquiw0" path="res://assets/switch_gimmick.png" id="2_y78nm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ur7ss"]
+radius = 32.0624
+
+[node name="SwitchGimmick" type="Area2D"]
+script = ExtResource("1_x4bie")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_y78nm")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ur7ss")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

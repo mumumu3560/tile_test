@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://chc6i6ihx3rgm"]
+
+[ext_resource type="Script" path="res://src/Cat.gd" id="1_a5qh7"]
+[ext_resource type="Texture2D" uid="uid://bpw6vo4pxdfou" path="res://assets/Cat Sprite Sheet.png" id="2_qb4ui"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3xg7k"]
+
+[node name="Cat" type="CharacterBody2D"]
+script = ExtResource("1_a5qh7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3xg7k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_qb4ui")
+hframes = 8
+vframes = 10
