@@ -8,7 +8,7 @@ extends Node
 # consts.
 # ---------------------------------------
 const GRID_SIZE = 64.0 # タイル1マスあたりのサイズ.
-const TILE_SOURCE_ID = 0 # タイルセットの元データID.
+const TILE_SOURCE_ID = 1 # タイルセットの元データID.
 
 ## タイルレイヤー.
 enum eTileLayer {
@@ -22,12 +22,20 @@ enum eTileType {
 	
 	WALL = 1, # 壁
 	FLOOR = 2, # 床.
+	SWITCH1 = 3,
+	
+	LEVER_OFF = 11, # レバースイッチOFF
+	LEVER_ON = 12, # レバースイッチON
 }
 
 ## タイルの種類に対応する Atlas Coords
 const TILE_TYPE_TBL = {
 	eTileType.WALL: Vector2i(0, 0), # 壁のアトラス座標.
 	eTileType.FLOOR: Vector2i(1, 0), # 床のアトラス座標.
+	eTileType.SWITCH1: Vector2i(2,0), #switchのアトラス座標
+	
+	eTileType.LEVER_OFF: Vector2i(5, 2), # レバースイッチOFF.
+	eTileType.LEVER_ON: Vector2i(6, 2), # レバースイッチON.
 }
 
 # ---------------------------------------
@@ -64,6 +72,18 @@ func set_cell(pos:Vector2, tile_layer:eTileLayer, type:eTileType) -> void:
 		
 	var map_pos = _tile.local_to_map(pos)
 	var atlas_coords = TILE_TYPE_TBL[type]
+	print("typeとatlas")
+	print(type)
+	
+	
+	
+	print(atlas_coords)
+	print("wallの確認")
+	print(eTileType.WALL)
+	print("他の物")
+	print(map_pos)
+	print(TILE_SOURCE_ID)
+	print(tile_layer)
 	_tile.set_cell(tile_layer, map_pos, TILE_SOURCE_ID, atlas_coords)
 
 # ---------------------------------------
