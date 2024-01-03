@@ -26,6 +26,7 @@ const SPEED = 400.0
 # ---------------------------------------
 var _is_moving = false
 var _anim_timer = 0
+var mode:int = 1
 
 # ---------------------------------------
 # public functions.
@@ -39,9 +40,20 @@ func _physics_process(delta: float) -> void:
 
 	# ※ここを追加する.
 	if Input.is_action_just_pressed("ui_accept"):
-		var p = position #+ _dir * Common.GRID_SIZE
-		# 前方にあるタイル(Backgroundレイヤー)を消す.
-		Common.erase_cell(p, Common.eTileLayer.BACKGROUND)
+		
+		var p = position + _dir * Common.GRID_SIZE
+		var type = Common.get_cell_type(p)
+		
+		match type:
+			Common.eTileType.LEVER_OFF:
+				# OFFだったらON.
+				Common.set_cell(p , Common.eTileLayer.OBJECT, Common.eTileType.LEVER_ON)
+			Common.eTileType.LEVER_ON:
+				# ONだったらOFF.
+				Common.set_cell(p, Common.eTileLayer.OBJECT, Common.eTileType.LEVER_OFF)
+			_:
+				# それ以外は何もしない.
+				pass
 		
 	# 移動処理.
 	_update_move(delta)
