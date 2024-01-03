@@ -17,6 +17,9 @@ extends Area2D
 # signal functions.
 # ---------------------------------------
 func _on_body_entered(body: Node2D) -> void:
+	print(_spr)
+	print("unlock_")
+	print(unlock_target)
 	# スイッチを踏んだ
 	if is_instance_valid(unlock_target):
 		# ターゲットを消す.
